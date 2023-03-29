@@ -46,17 +46,13 @@ namespace PlanetaryClient.Models
       request.AddHeader("Content-Type", "application/json");
       await client.DeleteAsync(request);
     }
-//neeewwwwwbbbbbsssssssss
+
   //Best guess for now on search function
-    public static async Task<string> Get(string dropdownvalue, string input)
+    public static async Task<string> Search(int id)
     {
       RestClient client = new RestClient("http://localhost:5000/");
-      // RestRequest request = new RestRequest($"api/planets/{id}", Method.Get); // Do we need to pass the Method.Search here like we did with Method.Delete or would it be Method.Get?
-      RestRequest request = new RestRequest($"api/planets?{dropdownvalue}={input}");
-      
-        // .AddParamter("name");
-
-      // RestResponse response = await client.GetAsync<SearchResponse>(request);
+      RestRequest request = new RestRequest($"api/planets?={id}", Method.Get);
+      // we need to somehow search by a property (right now name) and then connect to the PlanetId
 
       //These are from the earlier Get and GetAll      
       RestResponse response = await client.GetAsync(request);

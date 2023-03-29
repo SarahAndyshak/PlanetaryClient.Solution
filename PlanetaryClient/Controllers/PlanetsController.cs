@@ -57,31 +57,17 @@ public class PlanetsController: Controller
   }
 
   // adding in possible search functions:
-  public ActionResult Search(int id)
-  {
-    Planet planet = Planet.GetDetails(id);
-    return View(planet);
-  }
-
-  [HttpPost, ActionName("Details")]
-  // public ActionResult Search(string name, int id)
-    public ActionResult Search(Planet planet)
-  {
-    Planet.Post(planet);
-    // Planet planet = Planet.GetDetails(id);
-    return RedirectToAction("Details", new { id = planet.PlanetId });
-  }
-
-  // public ActionResult Edit(int id)
+  // public ActionResult Search(int id)
   // {
   //   Planet planet = Planet.GetDetails(id);
   //   return View(planet);
   // }
 
-  // [HttpPost]
-  // public ActionResult Edit(Planet planet)
+  // [HttpPost, ActionName("Details")]
+  //   public ActionResult Search(Planet planet)
   // {
-  //   Planet.Put(planet);
+  //   Planet.Post(planet);
+  //   // Planet planet = Planet.GetDetails(id);
   //   return RedirectToAction("Details", new { id = planet.PlanetId });
   // }
 
@@ -96,6 +82,20 @@ public class PlanetsController: Controller
     // public ActionResult ShowSearch(string searchName)
     // {
     //   List<Client> model = _db.Clients.Where(p => p.Name.ToLower());
-    //   return View("Idex", model);
+    //   return View("Index", model);
     // }
+
+    [HttpGet]
+    public ActionResult ShowSearch()
+    {
+      return View();
+    }
+
+    [HttpPost]
+    public ActionResult ShowSearch(string name)
+    {
+      List<Planet> model = Planet.Where(p => p.Name.ToLower()); 
+      // what replaces PlanetId? MVC doesn't access database
+      return View("Index", model);
+    }
 }

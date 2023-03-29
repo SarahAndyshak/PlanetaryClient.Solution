@@ -1,0 +1,66 @@
+  From ApiHelper.cs
+  
+  //Best guess for now on search function
+    public static async Task<string> Get(string name)
+    {
+      RestClient client = new RestClient("http://localhost:5000/");
+      // RestRequest request = new RestRequest($"api/planets/{id}", Method.Get); // Do we need to pass the Method.Search here like we did with Method.Delete or would it be Method.Get?
+
+      //Carl's suggestion below
+      // RestRequest request = new RestRequest($"api/planets?{dropdownvalue}={input}");
+            RestRequest request = new RestRequest($"api/planets?{xxxx}");
+
+      
+        // .AddParamter("name");
+
+      // RestResponse response = await client.GetAsync<SearchResponse>(request);
+
+      //These are from the earlier Get and GetAll      
+      RestResponse response = await client.GetAsync(request);
+      return response.Content;
+    }
+
+From PlanetsController.cs
+
+// adding in possible search functions:
+  public ActionResult Search(int id)
+  {
+    Planet planet = Planet.GetDetails(id);
+    return View(planet);
+  }
+
+  [HttpPost, ActionName("Details")]
+  // public ActionResult Search(string name, int id)
+    public ActionResult Search(Planet planet)
+  {
+    Planet.Post(planet);
+    // Planet planet = Planet.GetDetails(id);
+    return RedirectToAction("Details", new { id = planet.PlanetId });
+  }
+
+  // public ActionResult Edit(int id)
+  // {
+  //   Planet planet = Planet.GetDetails(id);
+  //   return View(planet);
+  // }
+
+  // [HttpPost]
+  // public ActionResult Edit(Planet planet)
+  // {
+  //   Planet.Put(planet);
+  //   return RedirectToAction("Details", new { id = planet.PlanetId });
+  // }
+
+// From Ashe's project/ another example to look at/ Do we need to return a list instead?
+    // [HttpGet]
+    // public ActionResult ShowSearch()
+    // {
+    //   return View();
+    // }
+
+    // [HttpPost]
+    // public ActionResult ShowSearch(string searchName)
+    // {
+    //   List<Client> model = _db.Clients.Where(p => p.Name.ToLower());
+    //   return View("Idex", model);
+    // }
