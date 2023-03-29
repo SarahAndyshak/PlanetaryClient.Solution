@@ -4,7 +4,7 @@
 
 #### An MVC website for interstellar exploration calling on the PlanetaryDictionary API.
 
-## Technologies Used
+## Technologies Used 
 
 * C#
 * .NET
