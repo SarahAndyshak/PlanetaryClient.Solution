@@ -1,0 +1,12 @@
+@{
+  ViewData["Title"] = "Planets";
+}
+
+<h1>All Planets:</h1>
+
+<ol>
+  @foreach (Planet planet in Model)
+  {
+    <li><strong>@planet.Name</strong>: Population: @planet.Population | <a href="/Planets/Details@(planet.PlanetId)">View Details</a></li>
+  }
+</ol>

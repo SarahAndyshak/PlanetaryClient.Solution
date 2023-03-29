@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using RestSharp;
 
-namespace PlanetClient.Models
+namespace PlanetaryClient.Models
 {
   public class ApiHelper
   {
