@@ -8,4 +8,6 @@
 <p>Life form details: @Model.LifeFormDetails</p>
 <p>Population: @Model.Population</p>
 
-@Html.ActionLink("Return to all planets", "Index")
+<p>@Html.ActionLink("Edit details", "Edit", new { id = @Model.PlanetId })</p>
+<p>@Html.ActionLink("Delete planet", "Delete", new { id = @Model.PlanetId })</p>
+<p>@Html.ActionLink("Return to all planets", "Index")</p>

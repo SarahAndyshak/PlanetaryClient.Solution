@@ -1,0 +1,32 @@
+@{
+  ViewData["Title"] = $"Edit {Model.Name}";
+}
+
+@model PlanetaryClient.Models.Planet
+
+<h4>Edit @Model.Name</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.PlanetId)
+  @Html.LabelFor(model => model.Name)
+  @Html.TextBoxFor(model => model.Name, new { @Value = Model.Name})
+  <br>
+  @Html.LabelFor(model => model.FunFact)
+  @Html.TextBoxFor(model => model.FunFact, new { @Value = Model.FunFact})
+  <br>
+  @Html.LabelFor(model => model.Climate) 
+  @Html.TextBoxFor(model => model.Climate, new { @Value = Model.Climate})
+  <br>
+  @Html.LabelFor(model => model.LifeFormDetails)
+  @Html.TextBoxFor(model => model.LifeFormDetails, new { @Value = Model.LifeFormDetails})
+  <br>
+  @Html.LabelFor(model => model.Population)
+  @Html.TextBoxFor(model => model.Population, new { @Value = Model.Population })
+  <br>
+  <br>
+  <input type="submit" value="Edit planet" class="btn btn-primary"/>
+}
+
+<br>
+<p>@Html.ActionLink("Back to details", "Details", new {id = @Model.PlanetId})</p>

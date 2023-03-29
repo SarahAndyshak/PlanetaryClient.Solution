@@ -2,11 +2,17 @@
   ViewData["Title"] = "Planets";
 }
 
-<h1>All Planets:</h1>
-
-<ol>
-  @foreach (Planet planet in Model)
-  {
-    <li><strong>@planet.Name</strong>: Population: @planet.Population | <a href="/Planets/Details@(planet.PlanetId)">View Details</a></li>
-  }
-</ol>
+<div class="container">
+  <h1>All Planets:</h1>
+  
+  <h3>Action:</h3>
+  <p>@Html.ActionLink("Add a new planet, and planet info", "Create")</p>
+  
+  <h3>Planets:</h3>
+  <ol>
+    @foreach (Planet planet in Model)
+    {
+      <li><strong>@planet.Name</strong>: Population: @planet.Population | <a href="/Planets/Details@(planet.PlanetId)">View Details</a></li>
+    }
+  </ol>
+</div>

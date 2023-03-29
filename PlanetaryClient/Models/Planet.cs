@@ -35,5 +35,22 @@ namespace PlanetaryClient.Models
 
       return planet;
     }
+
+    public static void Post(Planet planet)
+    {
+      string jsonPlanet = JsonConvert.SerializeObject(planet);
+      ApiHelper.Post(jsonPlanet);
+    }
+
+    public static void Put(Planet planet)
+    {
+      string jsonPlanet = JsonConvert.SerializeObject(planet);
+      ApiHelper.Put(planet.PlanetId, jsonPlanet);
+    }
+
+    public static void Delete (int id)
+    {
+      ApiHelper.Delete(id);
+    }
   }
 }
