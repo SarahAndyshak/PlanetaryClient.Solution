@@ -24,5 +24,16 @@ namespace PlanetaryClient.Models
 
       return planetList;
     }
+
+    public static Planet GetDetails(int id)
+    {
+      var apiCallTask = ApiHelper.Get(id);
+      var result = apiCallTask.Result;
+
+      JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
+      Planet planet = JsonConvert.DeserializeObject<Planet>(jsonResponse.ToString());
+
+      return planet;
+    }
   }
 }

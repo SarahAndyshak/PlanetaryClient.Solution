@@ -10,4 +10,10 @@ public class PlanetsController: Controller
     List<Planet> planets = Planet.GetPlanets();
     return View(planets);
   }
+
+  public IActionResult Details(int id)
+  {
+    Planet planet = Planet.GetDetails(id);
+    return View(planet);
+  }
 }

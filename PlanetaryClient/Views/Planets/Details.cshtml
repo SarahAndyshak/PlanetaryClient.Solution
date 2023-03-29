@@ -1,0 +1,11 @@
+@{
+  ViewData["Title"] = "Planets";
+}
+
+<h1>All About @Model.Name</h1>
+<p>Fun Facts: @Model.FunFact</p>
+<p>Climate: @Model.Climate</p>
+<p>Life form details: @Model.LifeFormDetails</p>
+<p>Population: @Model.Population</p>
+
+@Html.ActionLink("Return to all planets", "Index")
