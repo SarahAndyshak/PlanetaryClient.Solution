@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using PlanetaryClient.Models;
 using System.Collections.Generic;
 using System;
+using Newtonsoft.Json.Linq;
 
 namespace PlanetaryClient.Controllers;
 
@@ -12,6 +13,18 @@ public class PlanetsController: Controller
     List<Planet> planets = Planet.GetPlanets();
     return View(planets);
   }
+
+  
+
+  // public IActionResult Index(int page)
+  // {
+  //   List<Planet> planets = Planet.GetPlanets(page);
+  //   return View(planets);
+  // }
+  // {
+  //   List<Planet> planets = Planet.GetPlanets();
+  //   return View(planets);
+  // }
 
   public IActionResult Details(int id)
   {
@@ -65,19 +78,21 @@ public class PlanetsController: Controller
       return View(result);
     }
 
-    //pagination help from Brishna below- need to also pass in view bag in separate code
 
-  //   public async Task<IActionResult> Index(int page = 1, int pageSize = 10)
+//pagination help from Brishna below- need to also pass in view bag in separate code
+  // public async Task<IActionResult> Index(int page = 1, int pageSize = 10)
   // {
   //   List<Planet> planetList = new List<Planet> { };
   //   using (var httpClient = new HttpClient())
   //   {
-  //     using (var response = await httpClient.GetAsync($"https://localhost:5001/api/Planets?question=false&page=%7Bpage%7D&pageSize=%7BpageSize%7D%22))
+  //     using (var response = await httpClient.GetAsync($"https://localhost:5000/api/Planets?question=false&page=%7Bpage%7D&pageSize=%7BpageSize%7D%22"))
   //     {
   //       string apiResponse = await response.Content.ReadAsStringAsync();
   //       JObject jsonResponse = JObject.Parse(apiResponse);
-  //       JArray quoteArray = (JArray)jsonResponse["data"];
-  //       quoteList = quoteArray.ToObject<List<Planet>>();
+  //       JArray planetArray = (JArray)jsonResponse["data"];
+  //       planetList = planetArray.ToObject<List<Planet>>();
   //     }
   //   }
+  //   return View(planetList);
+  // }
 }

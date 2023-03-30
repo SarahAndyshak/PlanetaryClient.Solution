@@ -52,5 +52,16 @@ namespace PlanetaryClient.Models
     {
       ApiHelper.Delete(id);
     }
+
+    public static List<Planet> GetPlanets(int page)
+    {
+      var apiCallTask = ApiHelper.GetPlanets(page);
+      var result = apiCallTask.Result;
+
+      JArray jsonResponse = JsonConvert.DeserializeObject<JArray>(result);
+      List<Planet> planetList = JsonConvert.DeserializeObject<List<Planet>>(jsonResponse.ToString());
+
+      return planetList;
+    }
   }
 }
