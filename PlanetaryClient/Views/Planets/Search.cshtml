@@ -1,0 +1,30 @@
+@{
+  ViewData["Title"] = "Planets";
+}
+@using PlanetaryClient.Models;
+@using System.Collections.Generic;
+@model List<PlanetaryClient.Models.Planet>;
+
+<div class="container">
+  <h1>All Planets:</h1>
+
+  <h3>You've Searched:</h3>
+  @if (Model.Count == 0)
+  {
+    <p> No planets match this search </p>
+  }
+  else
+  {
+    <ol>
+      @foreach (Planet planet in Model)
+      {
+        <li><strong>@planet.Name</strong>: Population: @planet.Population | <a
+            href="/Planets/Details/@(planet.PlanetId)">View Details</a></li>
+      }
+    </ol>
+  }
+
+</div>
+
+
+

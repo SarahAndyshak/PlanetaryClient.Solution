@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using PlanetaryClient.Models;
+using System.Collections.Generic;
 using System;
 
 namespace PlanetaryClient.Controllers;
@@ -85,17 +86,30 @@ public class PlanetsController: Controller
     //   return View("Index", model);
     // }
 
-    [HttpGet]
-    public ActionResult ShowSearch()
+
+    [HttpPost, ActionName("Search")]
+    public IActionResult Search(string name)
     {
-      return View();
+      List<Planet> planets = Planet.GetPlanets();
+      List<Planet> result = planets.FindAll(p => p.Name.ToLower().Equals(name.ToLower()));
+      //List<Planet> model = planets.Where(p => p.Name.ToLower()); 
+      // what replaces PlanetId? MVC doesn't access database
+      return View(result);
     }
 
-    [HttpPost]
-    public ActionResult ShowSearch(string name)
-    {
-      List<Planet> model = Planet.Where(p => p.Name.ToLower()); 
-      // what replaces PlanetId? MVC doesn't access database
-      return View("Index", model);
-    }
+    //pagination help from Brishna below- need to also pass in view bag in separate code
+
+  //   public async Task<IActionResult> Index(int page = 1, int pageSize = 10)
+  // {
+  //   List<Planet> planetList = new List<Planet> { };
+  //   using (var httpClient = new HttpClient())
+  //   {
+  //     using (var response = await httpClient.GetAsync($"https://localhost:5001/api/Planets?question=false&page=%7Bpage%7D&pageSize=%7BpageSize%7D%22))
+  //     {
+  //       string apiResponse = await response.Content.ReadAsStringAsync();
+  //       JObject jsonResponse = JObject.Parse(apiResponse);
+  //       JArray quoteArray = (JArray)jsonResponse["data"];
+  //       quoteList = quoteArray.ToObject<List<Planet>>();
+  //     }
+  //   }
 }
