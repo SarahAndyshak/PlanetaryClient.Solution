@@ -57,43 +57,11 @@ public class PlanetsController: Controller
     return RedirectToAction("Index");
   }
 
-  // adding in possible search functions:
-  // public ActionResult Search(int id)
-  // {
-  //   Planet planet = Planet.GetDetails(id);
-  //   return View(planet);
-  // }
-
-  // [HttpPost, ActionName("Details")]
-  //   public ActionResult Search(Planet planet)
-  // {
-  //   Planet.Post(planet);
-  //   // Planet planet = Planet.GetDetails(id);
-  //   return RedirectToAction("Details", new { id = planet.PlanetId });
-  // }
-
-// From Ashe's project/ another example to look at/ Do we need to return a list instead?
-    // [HttpGet]
-    // public ActionResult ShowSearch()
-    // {
-    //   return View();
-    // }
-
-    // [HttpPost]
-    // public ActionResult ShowSearch(string searchName)
-    // {
-    //   List<Client> model = _db.Clients.Where(p => p.Name.ToLower());
-    //   return View("Index", model);
-    // }
-
-
     [HttpPost, ActionName("Search")]
     public IActionResult Search(string name)
     {
       List<Planet> planets = Planet.GetPlanets();
-      List<Planet> result = planets.FindAll(p => p.Name.ToLower().Equals(name.ToLower()));
-      //List<Planet> model = planets.Where(p => p.Name.ToLower()); 
-      // what replaces PlanetId? MVC doesn't access database
+      List<Planet> result = planets.FindAll(planet => planet.Name.ToLower().Equals(name.ToLower()));
       return View(result);
     }
 

@@ -47,18 +47,6 @@ namespace PlanetaryClient.Models
       await client.DeleteAsync(request);
     }
 
-  //Best guess for now on search function
-    // public static async Task<string> Search(string name)
-    // {
-    //   RestClient client = new RestClient("http://localhost:5000/");
-    //   RestRequest request = new RestRequest($"api/planets?={name}", Method.Get);
-    //   // we need to somehow search by a property (right now name) and then connect to the PlanetId
-
-    //   //These are from the earlier Get and GetAll
-    //   RestResponse response = await client.GetAsync(request);
-    //   return response.Content;
-    // }
-
     public static async Task<string> Search(string name)
     {
       RestClient client = new RestClient("http://localhost:5000/");
@@ -69,5 +57,3 @@ namespace PlanetaryClient.Models
   }
   
 }
-
-//on form side populate dropdown, each dropdowns value = the search type
