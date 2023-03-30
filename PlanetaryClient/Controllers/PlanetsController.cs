@@ -3,24 +3,26 @@ using PlanetaryClient.Models;
 using System.Collections.Generic;
 using System;
 using Newtonsoft.Json.Linq;
+using X.PagedList.Mvc;
+using X.PagedList;
 
 namespace PlanetaryClient.Controllers;
 
 public class PlanetsController: Controller
 {
-  public IActionResult Index()
-  {
-    List<Planet> planets = Planet.GetPlanets();
-    return View(planets);
-  }
+  // public IActionResult Index()
+  // {
+  //   List<Planet> planets = Planet.GetPlanets();
+  //   return View(planets);
+  // }
 
   
 
-  // public IActionResult Index(int page)
-  // {
-  //   List<Planet> planets = Planet.GetPlanets(page);
-  //   return View(planets);
-  // }
+  public IActionResult Index(int page)
+  {   
+    List<Planet> planets = Planet.GetPlanets(page);
+    return View(planets);
+  }
   // {
   //   List<Planet> planets = Planet.GetPlanets();
   //   return View(planets);
