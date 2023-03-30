@@ -10,7 +10,6 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
     <PackageReference Include="RestSharp" Version="108.0.3" />
     <PackageReference Include="X.PagedList.Mvc" Version="8.0.7" /> 
-    <!-- installed using dotnet add package X.PagedList.Mvc --version 8.0.7 -->
   </ItemGroup>
 
 </Project>

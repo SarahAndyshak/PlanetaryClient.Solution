@@ -4,6 +4,8 @@
 
 @using X.PagedList.Mvc;
 @using X.PagedList;
+@using PlanetaryClient.Controllers;
+@using PlanetaryClient.Models;
 
 
 <div class="container">
@@ -27,8 +29,44 @@
   <input type="submit" name = "name" value="Search Planets"/>
   }
 </div>
+<br>
 
-<nav aria-label="Page navigation example">
+<nav aria-label="Index Planet List">
+  <ul class="pagination">
+    <a class="page-link" asp-controller="Planets" asp-action="Index" asp-route-page="1">First</a>
+    <a class="page-link" asp-controller="Planets" asp-action="Index" asp-route-page="2">2</a>
+    <a class="page-link" asp-controller="Planets" asp-action="Index" asp-route-page="3">3</a>
+    <a class="page-link" asp-controller="Planets" asp-action="Index" asp-route-page="4">4</a>
+    <a class="page-link" asp-controller="Planets" asp-action="Index" asp-route-page="5">5</a>
+    <a class="page-link" asp-controller="Planets" asp-action="Index" asp-route-page="6">6</a>
+    <a class="page-link" asp-controller="Planets" asp-action="Index" asp-route-page="7">7</a>
+    <a class="page-link" asp-controller="Planets" asp-action="Index" asp-route-page="8">8</a>
+    <a class="page-link" asp-controller="Planets" asp-action="Index" asp-route-page="9">9</a>
+    <a class="page-link" asp-controller="Planets" asp-action="Index" asp-route-page="10">10</a>
+
+
+
+    @* <a class="page-link" asp-controller="Planets" asp-action="Index" asp-route-page=currentPage>First</a>
+    <a class="page-link" asp-controller="Planets" asp-action="Index" asp-route-page="(currentPage + 1)">Next</a> *@
+
+    @* <a class="page-link" asp-controller="Planets" asp-action="Index" asp-route-page="/Planets?page=@(currentPage - 1)&pageSize=@pageSize>">Next</a> *@
+
+  </ul>
+</nav>
+
+@* <a href="/Destinations?page=@(currentPage - 1)&pageSize=@pageSize"><button class="page-link">Prev</button></a> *@
+
+@* <nav aria-label="Index Planet List">
+  <ul class="pagination">
+  @for (int i = 0; i < @Model.Count; i++)
+  {
+    <li class="page-item"><a class="page-link" href="/page/{i}">i</a></li>
+  }
+  </ul>
+</nav> *@
+
+@* From Bootstrap *@
+@* <nav aria-label="Index Planet List">
   <ul class="pagination">
     <li class="page-item"><a class="page-link" href="#">Previous</a></li>
     <li class="page-item"><a class="page-link" href="#">1</a></li>
@@ -36,4 +74,13 @@
     <li class="page-item"><a class="page-link" href="#">3</a></li>
     <li class="page-item"><a class="page-link" href="#">Next</a></li>
   </ul>
-</nav>
+</nav> *@
+
+@*From Stack Overflow -- Your existing view*@
+@* Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index/@Model.PageNumber", 
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })) *@
+
+@* Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount *@
+@*@Html.PagedListPager(Model, page => Url.Action("Index", 
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))*@

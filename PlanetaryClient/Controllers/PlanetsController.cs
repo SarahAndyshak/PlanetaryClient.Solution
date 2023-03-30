@@ -10,23 +10,21 @@ namespace PlanetaryClient.Controllers;
 
 public class PlanetsController: Controller
 {
+  //original shows 
   // public IActionResult Index()
   // {
   //   List<Planet> planets = Planet.GetPlanets();
   //   return View(planets);
   // }
 
-  
-
-  public IActionResult Index(int page)
+  public IActionResult Index(int? page)
   {   
-    List<Planet> planets = Planet.GetPlanets(page);
-    return View(planets);
+    List<Planet> planets = Planet.GetPlanets();
+    int pageSize = 2;
+    int pageNumber = (page ?? 1);
+    ViewBag.pageNumber = pageNumber;
+    return View(planets.ToPagedList(pageNumber, pageSize));
   }
-  // {
-  //   List<Planet> planets = Planet.GetPlanets();
-  //   return View(planets);
-  // }
 
   public IActionResult Details(int id)
   {
@@ -79,22 +77,4 @@ public class PlanetsController: Controller
       List<Planet> result = planets.FindAll(planet => planet.Name.ToLower().Equals(name.ToLower()));
       return View(result);
     }
-
-
-//pagination help from Brishna below- need to also pass in view bag in separate code
-  // public async Task<IActionResult> Index(int page = 1, int pageSize = 10)
-  // {
-  //   List<Planet> planetList = new List<Planet> { };
-  //   using (var httpClient = new HttpClient())
-  //   {
-  //     using (var response = await httpClient.GetAsync($"https://localhost:5000/api/Planets?question=false&page=%7Bpage%7D&pageSize=%7BpageSize%7D%22"))
-  //     {
-  //       string apiResponse = await response.Content.ReadAsStringAsync();
-  //       JObject jsonResponse = JObject.Parse(apiResponse);
-  //       JArray planetArray = (JArray)jsonResponse["data"];
-  //       planetList = planetArray.ToObject<List<Planet>>();
-  //     }
-  //   }
-  //   return View(planetList);
-  // }
 }
